@@ -50,8 +50,12 @@ class LinkedList {
         this.length++;
     }
     // method to return the total number of nodes in list
-    size() {
+    getSize() {
         return this.length;
+    }
+
+    getHeadNode() {
+        return this.head;
     }
 }
 
@@ -63,5 +67,7 @@ testList.append(2);
 testList.append(3);
 testList.append(4);
 testList.prepend(0);
+testList.append(5);
 console.log(testList);
-console.log('Total length of list:', testList.size());
+console.log('Total length of list:', testList.getSize());
+console.log('Head node is:', testList.getHeadNode());
