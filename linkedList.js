@@ -115,7 +115,21 @@ class LinkedList {
         return currentNode.value;
         }
     }
-}
+
+    contains(searchValue) {
+        if (this.head === null) { // the list is empty, return false
+            return false;
+        } 
+        let currentNode = this.head;
+        while (currentNode !== null) {
+            if (currentNode.value === searchValue) { // Check if the current node's value matches the searchValue
+                return true;
+            } 
+            currentNode = currentNode.nextNode; // Move to the next node       
+            }
+            return false; // If no match is found by the end of the loop, return false.
+        }
+    }
 
 // testing area
 const testList = new LinkedList();
@@ -142,3 +156,6 @@ console.log(`Popped value: ${poppedValue}`);
 console.log('List after one pop:', testList);
 console.log('length of list after pop:', testList.getSize());
 console.log('Tail node after one pop is:', testList.getTail() ? testList.getTail().value : 'None');
+
+console.log('List contains 3:', testList.contains(3)); // true
+console.log('List contains 99:', testList.contains(9)); // false
