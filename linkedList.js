@@ -54,8 +54,23 @@ class LinkedList {
         return this.length;
     }
 
+      // method to return the head node (the first node in the list)
     getHeadNode() {
         return this.head;
+    }
+    // Method to find the last node in the list (the tail)
+    getTail() {
+        // If list is empty return null
+        if (this.head === null) {
+            return null;
+        }
+            let currentNode = this.head;
+              // Traverse the list until the last node
+              while (currentNode.nextNode !== null) {
+                currentNode = currentNode.nextNode;
+              }
+        // Return the last node, which is the tail of the list
+       return currentNode;
     }
 }
 
@@ -70,4 +85,5 @@ testList.prepend(0);
 testList.append(5);
 console.log(testList);
 console.log('Total length of list:', testList.getSize());
-console.log('Head node is:', testList.getHeadNode());
+console.log('Head node is:', testList.getHeadNode().value);
+console.log('Tail node is:', testList.getTail().value);
