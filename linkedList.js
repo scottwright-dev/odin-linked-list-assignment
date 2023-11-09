@@ -72,6 +72,25 @@ class LinkedList {
         // Return the last node, which is the tail of the list
        return currentNode;
     }
+    at(index) {
+            // Check if index is valid
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        // Start at head of list
+        let currentNode = this.head;
+        // Initialize a counter to keep track of the current node index
+        let counter = 0;
+         // Loop until the counter matches the index
+         while (counter < index) {
+            // move to next node
+            currentNode = currentNode.nextNode;
+            // Increment the counter
+            counter++;
+         }
+    return currentNode;
+    }
 }
 
 // testing area
@@ -87,3 +106,8 @@ console.log(testList);
 console.log('Total length of list:', testList.getSize());
 console.log('Head node is:', testList.getHeadNode().value);
 console.log('Tail node is:', testList.getTail().value);
+
+const testIndex = 1;
+const nodeAtTestIndex = testList.at(testIndex);
+
+console.log(`The value at index ${testIndex} is ${nodeAtTestIndex.value}`);
