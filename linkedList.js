@@ -80,14 +80,14 @@ class LinkedList {
 
         // Start at head of list
         let currentNode = this.head;
-        // Initialize a counter to keep track of the current node index
+        // Initialize a counter to keep track of the position of the current node index
         let position = 0;
          // Loop until the counter matches the index
          while (position < index) {
             // move to next node
             currentNode = currentNode.nextNode;
-            // Increment the counter
-            counter++;
+            // Increment the position counter
+            position++;
          }
     return currentNode;
     }
