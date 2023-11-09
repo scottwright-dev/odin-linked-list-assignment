@@ -91,6 +91,30 @@ class LinkedList {
          }
     return currentNode;
     }
+
+    // Method to remove last node from the list
+    pop() {
+        if (this.head === null) { // the list is empty
+            return null;
+        } else if (this.length === 1) { // the list has only one element
+            const poppedValue = this.head.value; // Store the value of the node to return it
+            this.head = null; // remove the head
+            this.length--; // Decrement list length
+            return poppedValue; // return the value of the node that was removed
+        } else { // list has more than one element
+            let currentNode = this.head;
+            let secondToLastNode; // This will keep track of the second-to-last node
+             // Iterate to the second-to-last node
+             while (currentNode.nextNode !== null) {
+                secondToLastNode = currentNode;
+                currentNode = currentNode.nextNode;
+             }
+        // Now currentNode is the last node and secondToLastNode is the second-to-last
+        secondToLastNode.nextNode = null; // Remove last node
+        this.length--; // Decrement length of the list
+        return currentNode.value;
+        }
+    }
 }
 
 // testing area
@@ -111,3 +135,10 @@ const testIndex = 1;
 const nodeAtTestIndex = testList.at(testIndex);
 
 console.log(`The value at index ${testIndex} is ${nodeAtTestIndex.value}`);
+
+const poppedValue = testList.pop();
+console.log(`Popped value: ${poppedValue}`);
+
+console.log('List after one pop:', testList);
+console.log('length of list after pop:', testList.getSize());
+console.log('Tail node after one pop is:', testList.getTail() ? testList.getTail().value : 'None');
