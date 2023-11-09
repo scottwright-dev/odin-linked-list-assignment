@@ -49,6 +49,10 @@ class LinkedList {
         // Increment the size of the list to reflect the addition of the new node
         this.length++;
     }
+    // method to return the total number of nodes in list
+    size() {
+        return this.length;
+    }
 }
 
 // testing area
@@ -60,3 +64,4 @@ testList.append(3);
 testList.append(4);
 testList.prepend(0);
 console.log(testList);
+console.log('Total length of list:', testList.size());
