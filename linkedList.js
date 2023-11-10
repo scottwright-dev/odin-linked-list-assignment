@@ -160,7 +160,36 @@ class LinkedList {
         return string; // Return completed string
     }
 
+    insertAt(newNodeValue, index) {
+        if (index < 0 || index > this.length) {
+            return null;
+        }
+        const newNode = new Node(newNodeValue);
+    
+        if (index === 0) { // Inserting at the head
+            newNode.nextNode = this.head;
+            this.head = newNode;
+        } else if (index === this.length) { // Inserting at the end
+            this.append(newNodeValue);
+        } else { // Inserting at any other position
+            let currentNode = this.head;
+            let currentPosition = 0;
+    
+            // Traverse to the node just before the index
+            while (currentPosition < index - 1) {
+                currentNode = currentNode.nextNode;
+                currentPosition++;
+            }
+    
+            // Insert new node
+            newNode.nextNode = currentNode.nextNode;
+            currentNode.nextNode = newNode;
+        }
+    
+        this.length++; // Increment the length of the list
     }
+}    
+    
 
 // testing area
 const testList = new LinkedList();
@@ -199,3 +228,17 @@ console.log(`Expected index for value ${valueToFind}: ${expectedIndexForFind}, A
 
 // Test toString method
 console.log('test to string method:', testList.toString());
+
+// Testing insertAt method
+testList.insertAt(15, 0); // Insert 15 at the start (index 0)
+console.log('List after inserting 15 at the start:', testList.toString());
+console.log(`Expected head node value: 15, Actual: ${testList.getHeadNode().value}`);
+// Insert a node in the middle of the list
+testList.insertAt(20, 3); // Assuming you want to insert 20 at index 3
+console.log('List after inserting 20 at index 3:', testList.toString());
+console.log(`Expected value at index 3: 20, Actual: ${testList.at(3).value}`);
+// Insert a node at the end of the list
+testList.insertAt(25, testList.getSize()); // Insert 25 at the end
+console.log('List after inserting 25 at the end:', testList.toString());
+console.log(`Expected tail node value: 25, Actual: ${testList.getTail().value}`);
+
