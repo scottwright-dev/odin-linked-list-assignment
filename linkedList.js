@@ -146,6 +146,20 @@ class LinkedList {
         return null; // If value not found, return null
     }
 
+    toString() {
+        if (this.head === null) { // Check for empty list
+            return "List is empty.";
+        }
+        let currentNode = this.head;
+        let string = ""; // Initialize empty string variable 
+        while (currentNode !== null) { // Loop until the end of the list
+            string += `(${currentNode.value}) -> `; // add current nodes value to string variable
+            currentNode = currentNode.nextNode;
+        }
+        string += "null"; // When the end of the list is reached, append 'null' to indicate end of list.
+        return string; // Return completed string
+    }
+
     }
 
 // testing area
@@ -177,9 +191,11 @@ console.log('Tail node after one pop is:', testList.getTail() ? testList.getTail
 console.log('List contains 3:', testList.contains(3)); // true
 console.log('List contains 99:', testList.contains(9)); // false
 
-
 // Testing find method
 const valueToFind = 3;
 const expectedIndexForFind = 2; // 3 is at index 2
 const actualIndexForFind = testList.find(valueToFind);
 console.log(`Expected index for value ${valueToFind}: ${expectedIndexForFind}, Actual: ${actualIndexForFind}`);
+
+// Test toString method
+console.log('test to string method:', testList.toString());
