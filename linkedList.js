@@ -129,6 +129,23 @@ class LinkedList {
             }
             return false; // If no match is found by the end of the loop, return false.
         }
+    
+    find(searchValue) {
+        if (this.head === null) {
+            return null;
+        } 
+        let currentNode = this.head;
+        let currentIndex = 0; // Initialize index counter for tracking position
+        while (currentNode !== null) {
+            if (currentNode.value === searchValue) { // If search value is found, return the current index
+                return currentIndex;
+            }
+        currentNode = currentNode.nextNode;
+        currentIndex++; // Increment index counter 
+        }
+        return null; // If value not found, return null
+    }
+
     }
 
 // testing area
@@ -159,3 +176,10 @@ console.log('Tail node after one pop is:', testList.getTail() ? testList.getTail
 
 console.log('List contains 3:', testList.contains(3)); // true
 console.log('List contains 99:', testList.contains(9)); // false
+
+
+// Testing find method
+const valueToFind = 3;
+const expectedIndexForFind = 2; // 3 is at index 2
+const actualIndexForFind = testList.find(valueToFind);
+console.log(`Expected index for value ${valueToFind}: ${expectedIndexForFind}, Actual: ${actualIndexForFind}`);
