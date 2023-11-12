@@ -164,7 +164,7 @@ class LinkedList {
         if (index < 0 || index > this.length) {
             return null;
         }
-        const newNode = new Node(newNodeValue);
+        const newNode = new Node(newNodeValue); 
     
         if (index === 0) { // Inserting at the head
             newNode.nextNode = this.head;
@@ -188,8 +188,39 @@ class LinkedList {
     
         this.length++; // Increment the length of the list
     }
-}    
+
+    removeAt(index) {
+        // Validate the index
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+        // Remove from the start
+        if (index === 0) {
+            this.head = this.head.nextNode; // Move the head to the next node
+            this.length--; // Decrement the list length
+            return;
+        } else {
+            // Remove from middle or end positions
+            let currentNode = this.head;
+            let currentPosition = 0;
     
+            // Traverse to the node just before the one to be removed
+            while (currentPosition < index - 1) {
+                currentNode = currentNode.nextNode; // Move to the next node in the list
+                currentPosition++;  // Increment position counter to keep track of position in list
+            }
+    
+            // Check if its not removing the last node
+            if (currentNode.nextNode != null) {
+                currentNode.nextNode = currentNode.nextNode.nextNode; // Adjust pointer to remove the desired node
+            } else {
+                currentNode.nextNode = null; // If it's the last node, set nextNode to null
+            }
+            // Update list length
+            this.length--;
+        }
+    }    
+}    
 
 // testing area
 const testList = new LinkedList();
@@ -242,3 +273,16 @@ testList.insertAt(25, testList.getSize()); // Insert 25 at the end
 console.log('List after inserting 25 at the end:', testList.toString());
 console.log(`Expected tail node value: 25, Actual: ${testList.getTail().value}`);
 
+// Testing removeAt method
+testList.removeAt(0); // Remove head node
+console.log('List after removing head:', testList.toString());
+console.log(`Expected head node value: 1, Actual: ${testList.getHeadNode().value}`);
+
+testList.removeAt(2); // Remove a node from middle of the list
+console.log('List after removing a middle node:', testList.toString());
+console.log(`Value at index 2 after removal: ${testList.at(2).value}`);
+
+testList.removeAt(testList.getSize() - 1); // Remove last node
+console.log('List after removing the last node:', testList.toString());
+console.log('Tail after removal is:', testList.getTail() ? testList.getTail().value : 'None');
+console.log('Total length of list after removals:', testList.getSize());
